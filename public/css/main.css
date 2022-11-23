@@ -1,0 +1,9 @@
+html, body {
+    background-color: #000;
+    color: #fff;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+}
