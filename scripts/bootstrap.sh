@@ -1,22 +1,22 @@
 #!/bin/bash
 sudo apt update
 
+# used for hiding mouse cursor
+sudo apt install unclutter -y
+
 # install nodejs 16
 curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt install nodejs -y
 node -v
 
-# nodejs-purchasechime configuration
-cd /opt/
-sudo chmod +x nodejs-purchasechime/scripts/start_chromium.sh
-cd nodejs-purchasechime
-sudo npm install
-cd ..
+# enable browser autostart using LXDE configuration
+mkdir -p ~/.config/lxsession/LXDE-pi
+echo -e "@lxpanel --profile LXDE-pi\n@pcmanfm --desktop --profile LXDE-pi\n#@xscreensaver -no-splash\n@xset s off\n@xset -dpms\n@xset s noblank\n@unclutter -idle 1\npoint-rpi\n@chromium-browser --start-fullscreen --start-maximized --force-device-scale-factor=1.5  http://localhost:8080" > ~/.config/lxsession/LXDE-pi/autostart
 
-# install the autostart service
-sudo cp nodejs-purchasechime/scripts/purchasechime-chromium.service /etc/systemd/system/purchasechime-chromium.service
-sudo systemctl daemon-reload
-sudo systemctl enable purchasechime-chromium.service
+# install npm packages
+cd ..
+npm install
+cd ..
 
 # PM2 setup
 sudo npm install pm2@latest -g
