@@ -8,9 +8,9 @@ node -v
 
 # nodejs-purchasechime configuration
 cd /opt/
-chmod +x nodejs-purchasechime/scripts/start_chromium.sh
+sudo chmod +x nodejs-purchasechime/scripts/start_chromium.sh
 cd nodejs-purchasechime
-npm install
+sudo npm install
 cd ..
 
 # install the autostart service
